@@ -1,0 +1,52 @@
+syntax = "proto3";
+package model;
+
+message File{
+    bytes  File =1;
+    enum FileType{
+        PDF= 0;
+        XLS= 1;
+        DOCX= 2;
+        ZIP= 3;
+        JPEG= 4;
+        PPT= 5;
+        MIME= 6;
+    }
+}
+
+message CreateResponse{
+    // API versioning: it is my best practice to specify version explicitly
+    string api = 1;
+    // ID of created file
+    int64 UUID = 2;
+}
+message DeleteResponse{
+    // API versioning: it is my best practice to specify version explicitly
+    string api = 1;
+    // ID of created file
+    int64 UUID = 2;
+}
+
+message ListResponse{
+    // API versioning: it is my best practice to specify version explicitly
+    string api = 1;
+    // ID of created file
+    int64 UUID = 2;
+}
+
+message UpdateResponse{
+    // API versioning: it is my best practice to specify version explicitly
+    string api = 1;
+    // ID of created file
+    int64 UUID = 2;
+}
+
+
+
+service StoreFile{
+    // Create new todo task
+    rpc Create(File) returns (CreateResponse);
+    rpc Delete(File) returns (DeleteResponse);
+    rpc List(File) returns (ListResponse);
+    rpc Update(File) returns (UpdateResponse);
+}
